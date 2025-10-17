@@ -22,6 +22,29 @@ export const useGameLogic = () => {
     }
   };
 
+  const speakCorrectAnswer = (itemName: string, sound: string) => {
+    if ('speechSynthesis' in window) {
+      const encouragement = [
+        'Well done!',
+        'Great job!',
+        'Excellent!',
+        'Perfect!',
+        'You got it!'
+      ];
+      const randomEncouragement = encouragement[Math.floor(Math.random() * encouragement.length)];
+      
+      const utterance = new SpeechSynthesisUtterance(
+        `${randomEncouragement} That's a ${itemName}! ${sound}`
+      );
+      utterance.rate = 0.8;
+      utterance.pitch = 1.3;
+      utterance.volume = 1;
+      utterance.lang = 'en-ZA';
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   const generateNewQuestion = () => {
     setFeedback('');
     
@@ -54,6 +77,9 @@ export const useGameLogic = () => {
       setFeedback(`🎉 Correct! That's a ${currentItem.name}! ${currentItem.sound}`);
       setShowCelebration(true);
       
+      // Speak the correct answer with encouragement
+      speakCorrectAnswer(currentItem.name, currentItem.sound);
+      
       setTimeout(() => {
         setShowCelebration(false);
         
@@ -69,6 +95,18 @@ export const useGameLogic = () => {
       }, 2000);
     } else {
       setFeedback(`Try again! That's a ${selectedItem.name}. Find the ${currentItem.name}!`);
+      // Speak gentle correction
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(
+          `That's a ${selectedItem.name}. Try again! Find the ${currentItem.name}!`
+        );
+        utterance.rate = 0.7;
+        utterance.pitch = 1.1;
+        utterance.volume = 1;
+        utterance.lang = 'en-ZA';
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      }
     }
   };
 
