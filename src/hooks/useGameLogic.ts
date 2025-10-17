@@ -9,6 +9,7 @@ export const useGameLogic = () => {
   const [feedback, setFeedback] = useState('');
   const [showCelebration, setShowCelebration] = useState(false);
   const [level, setLevel] = useState(1);
+  const [language, setLanguage] = useState('en-ZA');
 
   const speakWord = (itemName: string) => {
     if ('speechSynthesis' in window) {
@@ -16,7 +17,7 @@ export const useGameLogic = () => {
       utterance.rate = 0.7;
       utterance.pitch = 1.2;
       utterance.volume = 1;
-      utterance.lang = 'en-ZA';
+      utterance.lang = language;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -39,7 +40,7 @@ export const useGameLogic = () => {
       utterance.rate = 0.8;
       utterance.pitch = 1.3;
       utterance.volume = 1;
-      utterance.lang = 'en-ZA';
+      utterance.lang = language;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -60,7 +61,7 @@ export const useGameLogic = () => {
       utterance.rate = 0.7;
       utterance.pitch = 1.4;
       utterance.volume = 1;
-      utterance.lang = 'en-ZA';
+      utterance.lang = language;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -129,7 +130,7 @@ export const useGameLogic = () => {
         utterance.rate = 0.7;
         utterance.pitch = 1.1;
         utterance.volume = 1;
-        utterance.lang = 'en-ZA';
+        utterance.lang = language;
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utterance);
       }
@@ -159,6 +160,8 @@ export const useGameLogic = () => {
     feedback,
     showCelebration,
     level,
+    language,
+    setLanguage,
     handleAnswer,
     resetGame,
     repeatWord,
