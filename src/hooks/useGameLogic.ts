@@ -45,6 +45,27 @@ export const useGameLogic = () => {
     }
   };
 
+  const announceLevelUp = (newLevel: number) => {
+    if ('speechSynthesis' in window) {
+      const levelDescriptions: Record<number, string> = {
+        2: 'Farm Animals and Nature',
+        3: 'Wild Animals and Transport',
+        4: 'Food and Household items',
+        5: 'Sea Creatures and More'
+      };
+      
+      const utterance = new SpeechSynthesisUtterance(
+        `Congratulations! You're on stage ${newLevel}! ${levelDescriptions[newLevel]}! Well done!`
+      );
+      utterance.rate = 0.7;
+      utterance.pitch = 1.4;
+      utterance.volume = 1;
+      utterance.lang = 'en-ZA';
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   const generateNewQuestion = () => {
     setFeedback('');
     
@@ -84,11 +105,16 @@ export const useGameLogic = () => {
         setShowCelebration(false);
         
         if ((score + 1) % 5 === 0 && level < 5) {
-          setLevel(level + 1);
-          setFeedback(`🎉 Level Up! Welcome to Level ${level + 1}!`);
+          const newLevel = level + 1;
+          setLevel(newLevel);
+          setFeedback(`🎉 Level Up! Welcome to Level ${newLevel}!`);
+          
+          // Announce the new level
+          announceLevelUp(newLevel);
+          
           setTimeout(() => {
             generateNewQuestion();
-          }, 1500);
+          }, 3000); // Extended timeout to allow level announcement to finish
         } else {
           generateNewQuestion();
         }
