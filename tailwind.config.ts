@@ -39,6 +39,14 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -80,10 +88,35 @@ export default {
             height: "0",
           },
         },
+        "bounce-soft": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "celebration": {
+          "0%": { transform: "scale(0) rotate(0deg)", opacity: "0" },
+          "50%": { transform: "scale(1.2) rotate(180deg)", opacity: "1" },
+          "100%": { transform: "scale(1) rotate(360deg)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bounce-soft": "bounce-soft 2s ease-in-out infinite",
+        "float": "float 3s ease-in-out infinite",
+        "celebration": "celebration 1s ease-out",
+      },
+      backgroundImage: {
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-card": "var(--gradient-card)",
+      },
+      boxShadow: {
+        "soft": "var(--shadow-soft)",
+        "glow": "var(--shadow-glow)",
       },
     },
   },
