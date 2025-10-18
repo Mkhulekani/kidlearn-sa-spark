@@ -18,6 +18,14 @@ export const useGameLogic = () => {
       utterance.pitch = 1.2;
       utterance.volume = 1;
       utterance.lang = language;
+      
+      // Get and set voice for the selected language
+      const voices = window.speechSynthesis.getVoices();
+      const selectedVoice = voices.find(voice => voice.lang.startsWith(language.split('-')[0]));
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -41,6 +49,14 @@ export const useGameLogic = () => {
       utterance.pitch = 1.3;
       utterance.volume = 1;
       utterance.lang = language;
+      
+      // Get and set voice for the selected language
+      const voices = window.speechSynthesis.getVoices();
+      const selectedVoice = voices.find(voice => voice.lang.startsWith(language.split('-')[0]));
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -62,6 +78,14 @@ export const useGameLogic = () => {
       utterance.pitch = 1.4;
       utterance.volume = 1;
       utterance.lang = language;
+      
+      // Get and set voice for the selected language
+      const voices = window.speechSynthesis.getVoices();
+      const selectedVoice = voices.find(voice => voice.lang.startsWith(language.split('-')[0]));
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+      
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -131,6 +155,14 @@ export const useGameLogic = () => {
         utterance.pitch = 1.1;
         utterance.volume = 1;
         utterance.lang = language;
+        
+        // Get and set voice for the selected language
+        const voices = window.speechSynthesis.getVoices();
+        const selectedVoice = voices.find(voice => voice.lang.startsWith(language.split('-')[0]));
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+        }
+        
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utterance);
       }
