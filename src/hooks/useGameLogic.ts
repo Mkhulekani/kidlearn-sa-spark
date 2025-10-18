@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { learningItems, type LearningItem } from '@/data/learningItems';
+import { getTranslation, type LanguageCode } from '@/data/translations';
 
 export const useGameLogic = () => {
   const [currentItem, setCurrentItem] = useState<LearningItem | null>(null);
@@ -9,11 +10,12 @@ export const useGameLogic = () => {
   const [feedback, setFeedback] = useState('');
   const [showCelebration, setShowCelebration] = useState(false);
   const [level, setLevel] = useState(1);
-  const [language, setLanguage] = useState('en-ZA');
+  const [language, setLanguage] = useState<LanguageCode>('en-ZA');
 
   const speakWord = (itemName: string) => {
     if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(`Find the ${itemName}`);
+      const findTheText = getTranslation(language, 'findThe');
+      const utterance = new SpeechSynthesisUtterance(`${findTheText} ${itemName}`);
       utterance.rate = 0.7;
       utterance.pitch = 1.2;
       utterance.volume = 1;
@@ -33,17 +35,13 @@ export const useGameLogic = () => {
 
   const speakCorrectAnswer = (itemName: string, sound: string) => {
     if ('speechSynthesis' in window) {
-      const encouragement = [
-        'Well done!',
-        'Great job!',
-        'Excellent!',
-        'Perfect!',
-        'You got it!'
-      ];
-      const randomEncouragement = encouragement[Math.floor(Math.random() * encouragement.length)];
+      const encouragementKeys = ['wellDone', 'greatJob', 'excellent', 'perfect', 'youGotIt'];
+      const randomKey = encouragementKeys[Math.floor(Math.random() * encouragementKeys.length)];
+      const encouragement = getTranslation(language, randomKey);
+      const thatsA = getTranslation(language, 'thatsA');
       
       const utterance = new SpeechSynthesisUtterance(
-        `${randomEncouragement} That's a ${itemName}! ${sound}`
+        `${encouragement} ${thatsA} ${itemName}! ${sound}`
       );
       utterance.rate = 0.8;
       utterance.pitch = 1.3;
@@ -64,15 +62,13 @@ export const useGameLogic = () => {
 
   const announceLevelUp = (newLevel: number) => {
     if ('speechSynthesis' in window) {
-      const levelDescriptions: Record<number, string> = {
-        2: 'Farm Animals and Nature',
-        3: 'Wild Animals and Transport',
-        4: 'Food and Household items',
-        5: 'Sea Creatures and More'
-      };
+      const congratulations = getTranslation(language, 'congratulations');
+      const yourOnStage = getTranslation(language, 'yourOnStage');
+      const levelDescription = getTranslation(language, `levelDescriptions.${newLevel}`);
+      const wellDone = getTranslation(language, 'wellDone');
       
       const utterance = new SpeechSynthesisUtterance(
-        `Congratulations! You're on stage ${newLevel}! ${levelDescriptions[newLevel]}! Well done!`
+        `${congratulations}! ${yourOnStage} ${newLevel}! ${levelDescription}! ${wellDone}!`
       );
       utterance.rate = 0.7;
       utterance.pitch = 1.4;
@@ -120,7 +116,10 @@ export const useGameLogic = () => {
     
     if (selectedItem.name === currentItem.name) {
       setScore(score + 1);
-      setFeedback(`🎉 Correct! That's a ${currentItem.name}! ${currentItem.sound}`);
+      const correctEmoji = '🎉';
+      const correctText = getTranslation(language, 'correct');
+      const thatsA = getTranslation(language, 'thatsA');
+      setFeedback(`${correctEmoji} ${correctText}! ${thatsA} ${currentItem.name}! ${currentItem.sound}`);
       setShowCelebration(true);
       
       // Speak the correct answer with encouragement
@@ -132,7 +131,8 @@ export const useGameLogic = () => {
         if ((score + 1) % 5 === 0 && level < 5) {
           const newLevel = level + 1;
           setLevel(newLevel);
-          setFeedback(`🎉 Level Up! Welcome to Level ${newLevel}!`);
+          const levelUpText = getTranslation(language, 'levelUp');
+          setFeedback(`🎉 ${levelUpText} ${newLevel}!`);
           
           // Announce the new level
           announceLevelUp(newLevel);
@@ -145,11 +145,14 @@ export const useGameLogic = () => {
         }
       }, 2000);
     } else {
-      setFeedback(`Try again! That's a ${selectedItem.name}. Find the ${currentItem.name}!`);
+      const tryAgain = getTranslation(language, 'tryAgain');
+      const thatsA = getTranslation(language, 'thatsA');
+      const findThe = getTranslation(language, 'findThe');
+      setFeedback(`${tryAgain} ${thatsA} ${selectedItem.name}. ${findThe} ${currentItem.name}!`);
       // Speak gentle correction
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(
-          `That's a ${selectedItem.name}. Try again! Find the ${currentItem.name}!`
+          `${thatsA} ${selectedItem.name}. ${tryAgain} ${findThe} ${currentItem.name}!`
         );
         utterance.rate = 0.7;
         utterance.pitch = 1.1;
@@ -179,7 +182,8 @@ export const useGameLogic = () => {
 
   const repeatWord = () => {
     if (currentItem) {
-      setFeedback(`Listen carefully: ${currentItem.name}`);
+      const listenCarefully = getTranslation(language, 'listenCarefully');
+      setFeedback(`${listenCarefully}: ${currentItem.name}`);
       speakWord(currentItem.name);
     }
   };

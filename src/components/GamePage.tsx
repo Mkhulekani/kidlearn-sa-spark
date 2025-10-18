@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useGameLogic } from '@/hooks/useGameLogic';
 import { getLevelDescription } from '@/data/learningItems';
+import { getTranslation } from '@/data/translations';
 import {
   Select,
   SelectContent,
@@ -33,6 +34,8 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
     generateNewQuestion
   } = useGameLogic();
 
+  const t = (key: string) => getTranslation(language, key);
+
   useEffect(() => {
     generateNewQuestion();
   }, []);
@@ -44,8 +47,8 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
         <Card className="p-4 mb-4 shadow-soft">
           <div className="flex items-center gap-3 justify-center flex-wrap">
             <Languages className="w-6 h-6 text-primary" />
-            <label className="text-lg font-bold text-primary">Choose Language:</label>
-            <Select value={language} onValueChange={setLanguage}>
+            <label className="text-lg font-bold text-primary">{t('chooseLanguage')}</label>
+            <Select value={language} onValueChange={(value) => setLanguage(value as any)}>
               <SelectTrigger className="w-[200px] bg-gradient-to-r from-secondary/40 to-primary/40 border-2 border-primary/30">
                 <SelectValue />
               </SelectTrigger>
@@ -66,9 +69,9 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
             <div className="flex items-center gap-3">
               <Trophy className="w-10 h-10 text-warning" />
               <div>
-                <h1 className="text-3xl font-bold text-primary">Learning Fun!</h1>
+                <h1 className="text-3xl font-bold text-primary">{t('learningFun')}</h1>
                 <p className="text-muted-foreground">
-                  Level {level} of 5 - {getLevelDescription(level)}
+                  {t('levelOf')} {level} {t('of')} 5 - {t(`levelDescriptions.${level}`)}
                 </p>
               </div>
             </div>
@@ -79,7 +82,7 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
                 className="gap-2"
               >
                 <Home className="w-5 h-5" />
-                <span className="hidden sm:inline">Home</span>
+                <span className="hidden sm:inline">{t('home')}</span>
               </Button>
               <Button
                 onClick={resetGame}
@@ -87,7 +90,7 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
                 className="gap-2"
               >
                 <RefreshCw className="w-5 h-5" />
-                <span className="hidden sm:inline">New Game</span>
+                <span className="hidden sm:inline">{t('newGame')}</span>
               </Button>
             </div>
           </div>
@@ -95,11 +98,11 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
           <div className="flex gap-4 justify-center">
             <div className="bg-success/10 px-6 py-3 rounded-2xl border-2 border-success/20">
               <div className="text-3xl font-bold text-success">{score}</div>
-              <div className="text-sm text-success/80">Correct</div>
+              <div className="text-sm text-success/80">{t('correct')}</div>
             </div>
             <div className="bg-accent/10 px-6 py-3 rounded-2xl border-2 border-accent/20">
               <div className="text-3xl font-bold text-accent">{attempts}</div>
-              <div className="text-sm text-accent/80">Tries</div>
+              <div className="text-sm text-accent/80">{t('tries')}</div>
             </div>
           </div>
         </Card>
@@ -109,7 +112,7 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
           <Card className="p-8 shadow-glow">
             <div className="text-center mb-8">
               <h2 className="text-4xl font-bold text-primary mb-4">
-                Listen and Find!
+                {t('listenAndFind')}
               </h2>
               
               {/* Audio prompt area */}
@@ -131,7 +134,7 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
                 )}
                 <div className="text-9xl mb-4 animate-float">🔊</div>
                 <p className="text-2xl font-bold text-foreground mb-4">
-                  Listen carefully and click the correct picture!
+                  {t('listenCarefully')}
                 </p>
                 <Button
                   onClick={repeatWord}
@@ -139,12 +142,12 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
                   className="gap-3 text-xl shadow-soft"
                 >
                   <Volume2 className="w-8 h-8" />
-                  Hear it Again!
+                  {t('hearAgain')}
                 </Button>
               </div>
 
               {/* Options */}
-              <p className="text-xl font-bold text-foreground mb-4">Which one is it? Click the picture!</p>
+              <p className="text-xl font-bold text-foreground mb-4">{t('whichOne')}</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 {options.map((option, index) => (
                   <Button
@@ -177,27 +180,27 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
 
         {/* Instructions */}
         <Card className="p-6 mt-6 shadow-soft">
-          <h3 className="text-2xl font-bold text-primary mb-3">How to Play:</h3>
+          <h3 className="text-2xl font-bold text-primary mb-3">{t('howToPlay')}</h3>
           <ul className="text-lg text-foreground space-y-2">
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">🔊</span>
-              <span>Listen to the word that is spoken</span>
+              <span>{t('instruction1')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">👀</span>
-              <span>Look at the three pictures</span>
+              <span>{t('instruction2')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">🎯</span>
-              <span>Click on the correct picture that matches the word</span>
+              <span>{t('instruction3')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">🔁</span>
-              <span>Click "Hear it Again!" if you need to listen again</span>
+              <span>{t('instruction4')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">⭐</span>
-              <span>Get points for correct answers and level up!</span>
+              <span>{t('instruction5')}</span>
             </li>
           </ul>
         </Card>
