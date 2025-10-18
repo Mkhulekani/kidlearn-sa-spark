@@ -12,10 +12,11 @@ export const useGameLogic = () => {
   const [level, setLevel] = useState(1);
   const [language, setLanguage] = useState<LanguageCode>('en-ZA');
 
-  const speakWord = (itemName: string) => {
+  const speakWord = (itemName: string, item: LearningItem) => {
     if ('speechSynthesis' in window) {
       const findTheText = getTranslation(language, 'findThe');
-      const utterance = new SpeechSynthesisUtterance(`${findTheText} ${itemName}`);
+      const translatedName = item.translations[language];
+      const utterance = new SpeechSynthesisUtterance(`${findTheText} ${translatedName}`);
       utterance.rate = 0.7;
       utterance.pitch = 1.2;
       utterance.volume = 1;
@@ -33,15 +34,16 @@ export const useGameLogic = () => {
     }
   };
 
-  const speakCorrectAnswer = (itemName: string, sound: string) => {
+  const speakCorrectAnswer = (item: LearningItem, sound: string) => {
     if ('speechSynthesis' in window) {
       const encouragementKeys = ['wellDone', 'greatJob', 'excellent', 'perfect', 'youGotIt'];
       const randomKey = encouragementKeys[Math.floor(Math.random() * encouragementKeys.length)];
       const encouragement = getTranslation(language, randomKey);
       const thatsA = getTranslation(language, 'thatsA');
+      const translatedName = item.translations[language];
       
       const utterance = new SpeechSynthesisUtterance(
-        `${encouragement} ${thatsA} ${itemName}! ${sound}`
+        `${encouragement} ${thatsA} ${translatedName}! ${sound}`
       );
       utterance.rate = 0.8;
       utterance.pitch = 1.3;
@@ -105,7 +107,7 @@ export const useGameLogic = () => {
     setOptions(allOptions);
     
     setTimeout(() => {
-      speakWord(correctAnswer.name);
+      speakWord(correctAnswer.name, correctAnswer);
     }, 500);
   };
 
@@ -123,7 +125,7 @@ export const useGameLogic = () => {
       setShowCelebration(true);
       
       // Speak the correct answer with encouragement
-      speakCorrectAnswer(currentItem.name, currentItem.sound);
+      speakCorrectAnswer(currentItem, currentItem.sound);
       
       setTimeout(() => {
         setShowCelebration(false);
@@ -148,11 +150,13 @@ export const useGameLogic = () => {
       const tryAgain = getTranslation(language, 'tryAgain');
       const thatsA = getTranslation(language, 'thatsA');
       const findThe = getTranslation(language, 'findThe');
+      const selectedTranslated = selectedItem.translations[language];
+      const currentTranslated = currentItem.translations[language];
       setFeedback(`${tryAgain} ${thatsA} ${selectedItem.name}. ${findThe} ${currentItem.name}!`);
       // Speak gentle correction
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(
-          `${thatsA} ${selectedItem.name}. ${tryAgain} ${findThe} ${currentItem.name}!`
+          `${thatsA} ${selectedTranslated}. ${tryAgain} ${findThe} ${currentTranslated}!`
         );
         utterance.rate = 0.7;
         utterance.pitch = 1.1;
@@ -184,7 +188,7 @@ export const useGameLogic = () => {
     if (currentItem) {
       const listenCarefully = getTranslation(language, 'listenCarefully');
       setFeedback(`${listenCarefully}: ${currentItem.name}`);
-      speakWord(currentItem.name);
+      speakWord(currentItem.name, currentItem);
     }
   };
 
