@@ -80,6 +80,18 @@ export const GamePage = ({ onNavigate, language, setLanguage }: GamePageProps) =
           </div>
         </Card>
 
+        {/* Level Display */}
+        <Card className="p-6 mb-6 shadow-glow bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20">
+          <div className="text-center">
+            <div className="inline-block bg-gradient-primary text-primary-foreground px-8 py-4 rounded-3xl shadow-soft mb-3">
+              <div className="text-5xl font-black">LEVEL {level}</div>
+            </div>
+            <p className="text-2xl font-bold text-foreground">
+              {t(`levelDescriptions.${level}`)}
+            </p>
+          </div>
+        </Card>
+
         {/* Game Area */}
         {currentItem && (
           <Card className="p-8 shadow-glow">
