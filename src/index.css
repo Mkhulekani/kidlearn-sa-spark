@@ -8,50 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 200 100% 95%;
-    --foreground: 220 30% 20%;
+    --background: 195 100% 92%;
+    --foreground: 220 50% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 20%;
+    --card-foreground: 220 50% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 20%;
+    --popover-foreground: 220 50% 15%;
 
-    --primary: 350 90% 55%;
+    --primary: 340 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 100% 55%;
-    --secondary-foreground: 220 30% 20%;
+    --secondary: 50 100% 60%;
+    --secondary-foreground: 220 50% 15%;
 
-    --muted: 200 30% 90%;
-    --muted-foreground: 220 20% 50%;
+    --muted: 195 50% 85%;
+    --muted-foreground: 220 30% 40%;
 
-    --accent: 160 85% 50%;
+    --accent: 155 95% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 140 80% 50%;
+    --success: 135 90% 55%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 40 100% 55%;
-    --warning-foreground: 220 30% 20%;
+    --warning: 35 100% 60%;
+    --warning-foreground: 220 50% 15%;
 
-    --destructive: 0 85% 60%;
+    --destructive: 0 95% 65%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 40% 85%;
-    --input: 200 40% 85%;
-    --ring: 350 90% 55%;
+    --border: 195 60% 80%;
+    --input: 195 60% 80%;
+    --ring: 340 100% 60%;
 
     --radius: 1.5rem;
     
-    /* Custom gradients for kids theme - Cocomelon style */
-    --gradient-primary: linear-gradient(135deg, hsl(350 90% 55%), hsl(45 100% 55%), hsl(160 85% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(200 95% 60%), hsl(160 85% 55%), hsl(45 100% 60%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(200 100% 97%));
+    /* Custom gradients for kids theme - Super Bright Cocomelon style */
+    --gradient-primary: linear-gradient(135deg, hsl(340 100% 60%), hsl(50 100% 60%), hsl(155 95% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(195 100% 65%), hsl(155 95% 60%), hsl(50 100% 65%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(195 100% 95%));
     
-    /* Shadows - Softer and more playful */
-    --shadow-soft: 0 8px 25px -5px hsl(350 90% 55% / 0.2);
-    --shadow-glow: 0 0 40px hsl(45 100% 55% / 0.4);
+    /* Shadows - Bright and playful */
+    --shadow-soft: 0 8px 30px -5px hsl(340 100% 60% / 0.25);
+    --shadow-glow: 0 0 45px hsl(50 100% 60% / 0.5);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
