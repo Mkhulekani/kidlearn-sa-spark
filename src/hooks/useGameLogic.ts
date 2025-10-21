@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { learningItems, type LearningItem } from '@/data/learningItems';
 import { getTranslation, type LanguageCode } from '@/data/translations';
 
-export const useGameLogic = () => {
+export const useGameLogic = (language: LanguageCode, setLanguage: (lang: LanguageCode) => void) => {
   const [currentItem, setCurrentItem] = useState<LearningItem | null>(null);
   const [options, setOptions] = useState<LearningItem[]>([]);
   const [score, setScore] = useState(0);
@@ -10,7 +10,6 @@ export const useGameLogic = () => {
   const [feedback, setFeedback] = useState('');
   const [showCelebration, setShowCelebration] = useState(false);
   const [level, setLevel] = useState(1);
-  const [language, setLanguage] = useState<LanguageCode>('en-ZA');
 
   const speakWord = (itemName: string, item: LearningItem) => {
     if ('speechSynthesis' in window) {
@@ -200,8 +199,6 @@ export const useGameLogic = () => {
     feedback,
     showCelebration,
     level,
-    language,
-    setLanguage,
     handleAnswer,
     resetGame,
     repeatWord,

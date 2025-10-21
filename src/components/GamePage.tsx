@@ -1,23 +1,18 @@
 import { useEffect } from 'react';
-import { Trophy, RefreshCw, Home, Volume2, Star, Languages } from 'lucide-react';
+import { Trophy, RefreshCw, Home, Volume2, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useGameLogic } from '@/hooks/useGameLogic';
 import { getLevelDescription } from '@/data/learningItems';
 import { getTranslation } from '@/data/translations';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 interface GamePageProps {
   onNavigate: (page: string) => void;
+  language: any;
+  setLanguage: (language: any) => void;
 }
 
-export const GamePage = ({ onNavigate }: GamePageProps) => {
+export const GamePage = ({ onNavigate, language, setLanguage }: GamePageProps) => {
   const {
     currentItem,
     options,
@@ -26,13 +21,11 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
     feedback,
     showCelebration,
     level,
-    language,
-    setLanguage,
     handleAnswer,
     resetGame,
     repeatWord,
     generateNewQuestion
-  } = useGameLogic();
+  } = useGameLogic(language, setLanguage);
 
   const t = (key: string) => getTranslation(language, key);
 
@@ -43,26 +36,6 @@ export const GamePage = ({ onNavigate }: GamePageProps) => {
   return (
     <div className="min-h-screen bg-gradient-hero p-4">
       <div className="max-w-4xl mx-auto">
-        {/* Language Selector */}
-        <Card className="p-4 mb-4 shadow-soft">
-          <div className="flex items-center gap-3 justify-center flex-wrap">
-            <Languages className="w-6 h-6 text-primary" />
-            <label className="text-lg font-bold text-primary">{t('chooseLanguage')}</label>
-            <Select value={language} onValueChange={(value) => setLanguage(value as any)}>
-              <SelectTrigger className="w-[200px] bg-gradient-to-r from-secondary/40 to-primary/40 border-2 border-primary/30">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="en-ZA">English</SelectItem>
-                <SelectItem value="zu-ZA">isiZulu</SelectItem>
-                <SelectItem value="xh-ZA">isiXhosa</SelectItem>
-                <SelectItem value="nso-ZA">Sepedi</SelectItem>
-                <SelectItem value="tn-ZA">Setswana</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </Card>
-
         {/* Header */}
         <Card className="p-6 mb-6 shadow-soft">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
