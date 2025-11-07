@@ -11,7 +11,7 @@ export const HomePage = ({ onNavigate }: HomePageProps) => {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 animate-fade-in">
-            Welcome to KidsLearn SA! 🎉
+            Welcome to Mind Booster! 🎉
           </h1>
           <p className="text-xl md:text-2xl text-foreground mb-8">
             Fun Educational Games for Grade R & Grade 1 Learners

@@ -9,12 +9,12 @@ export const AboutPage = ({ onNavigate }: AboutPageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">
       <div className="max-w-5xl mx-auto px-4 py-12">
-        <h1 className="text-5xl font-bold text-primary text-center mb-12">About KidsLearn SA</h1>
+        <h1 className="text-5xl font-bold text-primary text-center mb-12">About Mind Booster</h1>
         
         <Card className="p-8 md:p-12 mb-8 shadow-soft">
           <h2 className="text-3xl font-bold text-primary mb-6">Our Mission</h2>
           <p className="text-lg text-foreground mb-4">
-            KidsLearn SA is dedicated to providing high-quality, interactive educational content specifically designed for South African children in Grade R and Grade 1. We believe that learning should be fun, engaging, and accessible to all children.
+            Mind Booster is dedicated to providing high-quality, interactive educational content specifically designed for South African children in Grade R and Grade 1. We believe that learning should be fun, engaging, and accessible to all children.
           </p>
           <p className="text-lg text-foreground">
             Our platform uses South African English pronunciation and culturally relevant examples to ensure that every child can learn in a familiar and comfortable environment.
@@ -46,7 +46,7 @@ export const AboutPage = ({ onNavigate }: AboutPageProps) => {
         <Card className="bg-gradient-primary p-8 md:p-12 text-primary-foreground text-center shadow-glow">
           <h2 className="text-3xl font-bold mb-4">Join Thousands of Happy Learners!</h2>
           <p className="text-xl mb-6 text-primary-foreground/90">
-            Start your child's learning adventure today with KidsLearn SA.
+            Start your child's learning adventure today with Mind Booster.
           </p>
           <Button
             onClick={() => onNavigate('game')}

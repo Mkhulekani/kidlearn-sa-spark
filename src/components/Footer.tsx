@@ -13,7 +13,7 @@ export const Footer = ({ onNavigate }: FooterProps) => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="w-8 h-8 text-primary" />
-              <h3 className="text-xl font-bold">KidsLearn SA</h3>
+              <h3 className="text-xl font-bold">Mind Booster</h3>
             </div>
             <p className="text-background/70 text-sm">
               Empowering South African children through interactive and engaging educational games designed for Grade R and Grade 1 learners.
@@ -85,7 +85,7 @@ export const Footer = ({ onNavigate }: FooterProps) => {
         </div>
 
         <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/50 text-sm">
-          <p>&copy; 2025 KidsLearn SA. All rights reserved. | Designed for South African Learners</p>
+          <p>&copy; 2025 Mind Booster. All rights reserved. | Designed for South African Learners</p>
           <p className="mt-2">Privacy Policy | Terms of Service | Accessibility</p>
         </div>
       </div>
