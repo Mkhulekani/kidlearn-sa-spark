@@ -8,50 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 195 100% 92%;
-    --foreground: 220 50% 15%;
+    --background: 200 70% 65%;
+    --foreground: 0 0% 100%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 50% 15%;
+    --card-foreground: 250 60% 50%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 50% 15%;
+    --popover-foreground: 250 60% 50%;
 
-    --primary: 340 100% 60%;
+    --primary: 250 65% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 50 100% 60%;
-    --secondary-foreground: 220 50% 15%;
+    --secondary: 190 85% 55%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 195 50% 85%;
-    --muted-foreground: 220 30% 40%;
+    --muted: 200 50% 75%;
+    --muted-foreground: 250 30% 40%;
 
-    --accent: 155 95% 55%;
+    --accent: 190 90% 50%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 135 90% 55%;
+    --success: 155 85% 50%;
     --success-foreground: 0 0% 100%;
 
     --warning: 35 100% 60%;
-    --warning-foreground: 220 50% 15%;
+    --warning-foreground: 250 60% 50%;
 
-    --destructive: 0 95% 65%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 195 60% 80%;
-    --input: 195 60% 80%;
-    --ring: 340 100% 60%;
+    --border: 200 50% 80%;
+    --input: 200 50% 80%;
+    --ring: 250 65% 55%;
 
     --radius: 1.5rem;
     
-    /* Custom gradients for kids theme - Super Bright Cocomelon style */
-    --gradient-primary: linear-gradient(135deg, hsl(340 100% 60%), hsl(50 100% 60%), hsl(155 95% 55%));
-    --gradient-hero: linear-gradient(135deg, hsl(195 100% 65%), hsl(155 95% 60%), hsl(50 100% 65%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(195 100% 95%));
+    /* Custom gradients - Mind Booster theme (Powder Blue, Purple, Cyan) */
+    --gradient-primary: linear-gradient(135deg, hsl(250 65% 55%), hsl(190 85% 55%), hsl(200 70% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(200 70% 60%), hsl(250 60% 50%), hsl(190 90% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(200 60% 90%));
     
-    /* Shadows - Bright and playful */
-    --shadow-soft: 0 8px 30px -5px hsl(340 100% 60% / 0.25);
-    --shadow-glow: 0 0 45px hsl(50 100% 60% / 0.5);
+    /* Shadows - Purple and cyan glow */
+    --shadow-soft: 0 8px 30px -5px hsl(250 65% 55% / 0.3);
+    --shadow-glow: 0 0 45px hsl(190 85% 55% / 0.4);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

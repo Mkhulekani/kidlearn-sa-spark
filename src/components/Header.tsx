@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { type LanguageCode } from '@/data/translations';
+import logo from '@/assets/mind-booster-logo.jpeg';
 
 interface HeaderProps {
   currentPage: string;
@@ -22,7 +23,7 @@ export const Header = ({ currentPage, onNavigate, language, setLanguage }: Heade
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <BookOpen className="w-10 h-10 animate-bounce-soft" />
+            <img src={logo} alt="Mind Booster Logo" className="w-14 h-14 rounded-full object-cover animate-bounce-soft" />
             <div>
               <h1 className="text-3xl font-bold">KidsLearn SA</h1>
               <p className="text-sm text-primary-foreground/80">Making Learning Fun for South African Children</p>
