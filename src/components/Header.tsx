@@ -25,7 +25,7 @@ export const Header = ({ currentPage, onNavigate, language, setLanguage }: Heade
           <div className="flex items-center gap-3">
             <img src={logo} alt="Mind Booster Logo" className="w-14 h-14 rounded-full object-cover animate-bounce-soft" />
             <div>
-              <h1 className="text-3xl font-bold">KidsLearn SA</h1>
+              <h1 className="text-3xl font-bold">Mind Booster</h1>
               <p className="text-sm text-primary-foreground/80">Making Learning Fun for South African Children</p>
             </div>
           </div>
